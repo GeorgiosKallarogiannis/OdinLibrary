@@ -1,11 +1,13 @@
 "use strict";
 
-function Book(title, author, pageNumber, read) {
-  this.id = crypto.randomUUID();
-  this.title = title;
-  this.author = author;
-  this.pageNumber = pageNumber;
-  this.read = read;
+class Book {
+  constructor(title, author, pageNumber, read) {
+    this.id = crypto.randomUUID();
+    this.title = title;
+    this.author = author;
+    this.pageNumber = pageNumber;
+    this.read = read;
+  }
 }
 
 Book.prototype.changeStatus = function () {
@@ -29,7 +31,7 @@ function addBookToPage(array) {
     readBtn.classList.add("change-state");
 
     const bookInformation = document.createTextNode(
-      `${array[i].title} by ${array[i].author}`
+      `${array[i].title} by ${array[i].author}`,
     );
 
     const bookPages = document.createTextNode(`Pages: ${array[i].pageNumber}`);
@@ -60,8 +62,6 @@ function addBookToPage(array) {
 
 function addBookToLibrary(title, author, pageNumber, read) {
   const createdBook = new Book(title, author, pageNumber, read);
-
-  console.log(createdBook);
 
   myLibrary.push(createdBook);
 }
@@ -120,7 +120,7 @@ closeDialog.addEventListener("click", (e) => {
     titleInputVal,
     authorInputVal,
     pageNumberInputVal,
-    readStatusInputVal
+    readStatusInputVal,
   );
 
   addBookToPage(myLibrary);
